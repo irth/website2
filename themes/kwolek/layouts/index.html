@@ -1,0 +1,67 @@
+{{ define "main" }}
+<section id="about_me">
+    {{ if (where .Site.RegularPages "Section" "top") }}
+    {{ range where .Site.RegularPages "Section" "top" }}
+    <h2>{{ .Title }}</h2>
+    <div class="content">
+        {{ .Content }}
+    </div>
+    {{ end }}
+    {{ end }}
+</section>
+<div id="homepage">
+    <section id="recent_posts">
+        <h2><a href="/posts">Recent posts</a></h2>
+        <ul class="postList">
+            {{ range (first 10 (where .Site.RegularPages "Section" "posts")) }}
+            <li>
+                <div class="timestamp">
+                    {{ time.Format "2006-01-02" .Date }}
+                </div>
+                <div class="link">
+                    <a href="{{ .Permalink }}">
+                        {{ .LinkTitle }}
+                    </a>
+                </div>
+            </li>
+            {{ end }}
+        </ul>
+        <div class="seeAll"><a href="/posts">See all...</a></div>
+    </section>
+    {{ if (where .Site.RegularPages "Section" "updates") }}
+    <section id="project_updates">
+        <h2><a href="/updates">Project updates</a></h2>
+        <ul class="postList">
+            {{ range (first 10 (where .Site.RegularPages "Section" "updates")) }}
+            <li>
+                <div class="timestamp">
+                    {{ time.Format "2006-01-02" .Date }}
+                </div>
+                <div class="link">
+                    <a href="{{ .Permalink }}">
+                        {{ .LinkTitle }}
+                    </a>
+                </div>
+            </li>
+            {{ end }}
+        </ul>
+        <div class="seeAll"><a href="/updates">See all...</a></div>
+    </section>
+    {{ end }}
+</div>
+
+{{ if (where .Site.RegularPages "Section" "projects") }}
+<section id="projects">
+    <h2><a href="/projects">Projects</a></h2>
+    {{ range where .Site.RegularPages "Section" "projects" }}
+    <div class="project">
+    <h3><a href="{{ .Permalink }}">{{ .Title }}</a></h3>
+    <div class="content">
+    {{ .Summary }}
+    </div>
+    <p><a href="{{ .Permalink }}">See more...</a></p>
+    </div>
+    {{ end }}
+</section>
+{{ end }}
+{{ end }}

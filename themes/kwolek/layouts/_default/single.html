@@ -1,0 +1,29 @@
+{{ define "main" }}
+<h2 class="postTitle">{{ .Title }}</h2>
+<div class="content">
+    {{ .Content | safeHTML }}
+</div>
+{{ if not (eq .Section "projects") }}
+<div class="meta">
+    {{ .Date }}
+</div>
+{{ end }}
+
+{{ if (isset .Params "projectname") }}
+<ul class="projectUpdateList postList">
+<h4>Updates:</h4>
+    {{ range (first 10 (where .Site.RegularPages "Params.project" .Params.projectName)) }}
+    <li>
+        <div class="timestamp">
+            {{ time.Format "2006-01-02" .Date }}
+        </div>
+        <div class="link">
+            <a href="{{ .Permalink }}">
+                {{ .LinkTitle }}
+            </a>
+        </div>
+    </li>
+    {{ end }}
+</ul>
+{{ end }}
+{{ end }}
