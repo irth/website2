@@ -5,7 +5,7 @@ draft: false
 projectName: donethat
 ---
 
-[https://doneth.at](DoneTh.at) is a simple web app Flask that allows you to track your productivity more objectively, by keeping track of your accomplishments.
+[https://doneth.at](DoneTh.at) is a simple web app written in Flask that allows you to track your productivity more objectively, by keeping track of your accomplishments.
 
 It allows the user to assign points based on task difficulty, keep a daily goal and view statistics.
 
